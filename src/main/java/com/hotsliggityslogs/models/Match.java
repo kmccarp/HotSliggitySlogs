@@ -1,10 +1,13 @@
 package com.hotsliggityslogs.models;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
-public abstract class Match {
+@Document(collection = "match")
+public class Match {
     @Id
     private String id;
+    private String matchType;
     private String mapName;
     private String matchLength;
     private String heroName;
@@ -20,6 +23,14 @@ public abstract class Match {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public String getMatchType() {
+        return matchType;
+    }
+
+    public void setMatchType(String matchType) {
+        this.matchType = matchType;
     }
 
     public String getMapName() {
