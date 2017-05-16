@@ -16,6 +16,7 @@ public class Match {
     private String ratingAdjustmentPoints;
     private String matchDateTime;
     private String matchOutcome;
+    private String season;
 
     public String getId() {
         return id;
@@ -95,5 +96,13 @@ public class Match {
 
     public void setMatchOutcome(String matchOutcome) {
         this.matchOutcome = matchOutcome;
+    }
+
+    public String getSeason() {
+        return season;
+    }
+
+    public void setSeason(String season) {
+        this.season = season;
     }
 }
