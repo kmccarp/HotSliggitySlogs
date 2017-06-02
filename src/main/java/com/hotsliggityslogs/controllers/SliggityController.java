@@ -46,6 +46,6 @@ public class SliggityController {
     @GetMapping("/matches/{id}")
     public ResponseEntity<MatchesResponse> getMatchById(@PathVariable String id) {
 
-        return ResponseEntity.ok(sliggityGetService.getMatch(id));
+        return ResponseEntity.ok(sliggityGetService.getMatchById(id));
     }
 }

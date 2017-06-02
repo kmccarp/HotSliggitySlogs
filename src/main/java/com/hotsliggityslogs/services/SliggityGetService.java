@@ -19,7 +19,7 @@ public class SliggityGetService {
         return sliggityRepo.findAll();
     }
 
-    public MatchesResponse getMatch(String id) {
+    public MatchesResponse getMatchById(String id) {
 
         MatchesResponse matchesResponse = new MatchesResponse();
 
