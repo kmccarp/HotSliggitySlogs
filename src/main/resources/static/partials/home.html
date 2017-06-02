@@ -1,0 +1,15 @@
+<form name="form1">
+    <div class="row bottom-buffer">
+        <div class="col-sm-12 col-md-5">
+            <label>Log ID:</label>
+            <input type="text" class="form-control" ng-model="logId"/>
+            <button ng-click="searchById()">Search by ID</button>
+        </div>
+    </div>
+</form>
+
+<div class="col-sm-12 columns" ng-show="sliggitySearchResponse.matches.length > 0">
+    <div ng-repeat="match in sliggitySearchResponse.matches">
+        {{match.matchType}} {{match.mapName}} {{match.matchLength}} {{match.heroName}} {{match.heroLevel}} {{match.matchMakingRating}} {{match.ratingAdjustmentPoints}} {{match.matchDateTime}} {{match.matchOutcome}} {{match.season}}
+    </div>
+</div>
