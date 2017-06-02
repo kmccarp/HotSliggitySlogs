@@ -23,16 +23,9 @@ public class SliggityController {
     private SliggitySaveService sliggitySaveService;
 
     @GetMapping("/matches")
-    public Map<String, Object> getMatches() {
+    public ResponseEntity<MatchesResponse> getMatches() {
 
-        List<Match> matches = sliggityGetService.getMatches();
-
-        Map<String, Object> response = new HashMap<>();
-
-        response.put("totalMatches", matches.size());
-        response.put("matches", matches);
-
-        return response;
+        return ResponseEntity.ok(sliggityGetService.getAllMatches());
     }
 
     @PostMapping("/matches")

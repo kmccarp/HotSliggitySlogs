@@ -15,8 +15,15 @@ public class SliggityGetService {
     @Autowired
     private SliggityRepo sliggityRepo;
 
-    public List<Match> getMatches() {
-        return sliggityRepo.findAll();
+    public MatchesResponse getAllMatches() {
+        MatchesResponse matchesResponse = new MatchesResponse();
+
+        List<Match> matches = new ArrayList<>();
+        matches.addAll(sliggityRepo.findAll());
+
+        matchesResponse.setMatches(matches);
+
+        return matchesResponse;
     }
 
     public MatchesResponse getMatchById(String id) {
