@@ -1,6 +1,5 @@
 package com.hotsliggityslogs.controllers;
 
-import com.hotsliggityslogs.models.Match;
 import com.hotsliggityslogs.models.requests.MatchesRequest;
 import com.hotsliggityslogs.models.responses.MatchesResponse;
 import com.hotsliggityslogs.services.SliggityGetService;
@@ -8,10 +7,6 @@ import com.hotsliggityslogs.services.SliggitySaveService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 @RestController
 public class SliggityController {
@@ -40,5 +35,17 @@ public class SliggityController {
     public ResponseEntity<MatchesResponse> getMatchById(@PathVariable String id) {
 
         return ResponseEntity.ok(sliggityGetService.getMatchById(id));
+    }
+
+    @GetMapping("/matches/heroName/{heroName}")
+    public ResponseEntity<MatchesResponse> getMatchByHeroName(@PathVariable String heroName) {
+
+        return ResponseEntity.ok(sliggityGetService.getMatchByHeroName(heroName));
+    }
+
+    @GetMapping("/matches/season/{season}")
+    public ResponseEntity<MatchesResponse> getMatchBySeason(@PathVariable String season) {
+
+        return ResponseEntity.ok(sliggityGetService.getMatchBySeason(season));
     }
 }

@@ -6,6 +6,22 @@
             <button ng-click="searchById()">Search by ID</button>
         </div>
     </div>
+
+    <div class="row bottom-buffer">
+        <div class="col-sm-12 col-md-5">
+            <label>Name:</label>
+            <input type="text" class="form-control" ng-model="heroName"/>
+            <button ng-click="searchByName()">Search by Name</button>
+        </div>
+    </div>
+
+    <div class="row bottom-buffer">
+        <div class="col-sm-12 col-md-5">
+            <label>Season:</label>
+            <select ng-model="seasonSearchRequest.type" ng-options="seasonSearchType.text for seasonSearchType in seasonSearchTypes"/>
+            <button ng-click="searchBySeason()">Search by Season</button>
+        </div>
+    </div>
 </form>
 
 <div class="col-sm-12 columns" ng-show="sliggitySearchResponse.matches.length > 0">

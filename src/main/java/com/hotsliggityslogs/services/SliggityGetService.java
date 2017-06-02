@@ -37,4 +37,28 @@ public class SliggityGetService {
 
         return matchesResponse;
     }
+
+    public MatchesResponse getMatchByHeroName(String heroName) {
+
+        MatchesResponse matchesResponse = new MatchesResponse();
+
+        List<Match> matches = new ArrayList<>();
+        matches.addAll(sliggityRepo.findByHeroName(heroName));
+
+        matchesResponse.setMatches(matches);
+
+        return matchesResponse;
+    }
+
+    public MatchesResponse getMatchBySeason(String season) {
+
+        MatchesResponse matchesResponse = new MatchesResponse();
+
+        List<Match> matches = new ArrayList<>();
+        matches.addAll(sliggityRepo.findBySeason(season));
+
+        matchesResponse.setMatches(matches);
+
+        return matchesResponse;
+    }
 }
