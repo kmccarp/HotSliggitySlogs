@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -45,17 +44,8 @@ public class SliggityController {
     }
 
     @GetMapping("/matches/{id}")
-    public ResponseEntity<MatchesResponse> getMatch(@PathVariable String id) {
+    public ResponseEntity<MatchesResponse> getMatchById(@PathVariable String id) {
 
-        MatchesResponse matchesResponse = new MatchesResponse();
-
-        List<Match> matches = new ArrayList<>();
-
-        matches.add(sliggityGetService.getMatch(id));
-
-        matchesResponse.setMatches(matches);
-
-        return ResponseEntity.ok(matchesResponse);
+        return ResponseEntity.ok(sliggityGetService.getMatch(id));
     }
-
 }
