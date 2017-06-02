@@ -44,18 +44,6 @@ public class SliggityController {
         return ResponseEntity.ok().build();
     }
 
-//    @GetMapping("/matches/{id}")
-//    public Map<String, Object> getMatch(@PathVariable String id) {
-//
-//        Match match = sliggityGetService.getMatch(id);
-//
-//        Map<String, Object> response = new HashMap<>();
-//
-//        response.put("totalMatches", 1);
-//        response.put("matches", match);
-//
-//        return response;
-//    }
     @GetMapping("/matches/{id}")
     public ResponseEntity<MatchesResponse> getMatch(@PathVariable String id) {
 
