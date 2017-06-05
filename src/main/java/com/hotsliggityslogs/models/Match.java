@@ -14,7 +14,8 @@ public class Match {
     private String heroLevel;
     private String matchmakingRating;
     private String ratingAdjustmentPoints;
-    private String matchDateTime;
+    private String matchDate;
+    private String matchTime;
     private String matchOutcome;
     private String season;
 
@@ -82,12 +83,20 @@ public class Match {
         this.ratingAdjustmentPoints = ratingAdjustmentPoints;
     }
 
-    public String getMatchDateTime() {
-        return matchDateTime;
+    public String getMatchDate() {
+        return matchDate;
     }
 
-    public void setMatchDateTime(String matchDateTime) {
-        this.matchDateTime = matchDateTime;
+    public void setMatchDate(String matchDate) {
+        this.matchDate = matchDate;
+    }
+
+    public String getMatchTime() {
+        return matchTime;
+    }
+
+    public void setMatchTime(String matchTime) {
+        this.matchTime = matchTime;
     }
 
     public String getMatchOutcome() {
