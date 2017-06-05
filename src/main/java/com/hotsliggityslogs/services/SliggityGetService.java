@@ -38,12 +38,16 @@ public class SliggityGetService {
         return matchesResponse;
     }
 
-    public MatchesResponse getMatchByHeroName(String heroName) {
+    public MatchesResponse getMatchByHeroName(String heroName, String beginningDate, String endDate) {
 
         MatchesResponse matchesResponse = new MatchesResponse();
 
         List<Match> matches = new ArrayList<>();
-        matches.addAll(sliggityRepo.findByHeroName(heroName));
+        if (beginningDate != null && endDate != null) {
+            matches.addAll(sliggityRepo.findByHeroAndDate(heroName, beginningDate, endDate));
+        } else {
+            matches.addAll(sliggityRepo.findByHeroName(heroName));
+        }
 
         matchesResponse.setMatches(matches);
 

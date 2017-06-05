@@ -2,30 +2,24 @@
     <div class="row bottom-buffer form-group">
         <div class="col-sm-12 col-md-5">
             <div class="input-group">
-                <input placeholder="Hero's Name" type="text" class="form-control" ng-model="heroName"/>
+                <input type="text" class="form-control" ng-model="logId" placeholder="Log I.D."/>
                 <span class="input-group-btn">
-                    <button class="btn btn-default" ng-click="searchByName()">Search by Name</button>
-                </span>
-            </div>
-        </div>
-        <div class="col-sm-12 col-md-5">
-            <div class="radio-inline">
-                <label><input type="radio" ng-model="isByDate" value="false" ng-checked="isByDateChecked == 'true'">No Date</label>
-            </div>
-            <div class="radio-inline">
-                <label><input type="radio" ng-model="isByDate" value="true">Date</label>
+                        <button class="btn btn-default" ng-click="searchById()">Search by ID</button>
+                    </span>
             </div>
         </div>
     </div>
 
-    <div class="row bottom-buffer">
-        <div class="col-sm-6 col-md-2">
-            <label>Beginning Date:</label>
-            <input type="text" class="form-control" ng-model="beginningDate"/>
-        </div>
-        <div class="col-sm-6 col-md-2">
-            <label>End Date:</label>
-            <input type="text" class="form-control" ng-model="endDate"/>
+    <div class="row bottom-buffer form-group">
+        <div class="col-sm-12 col-md-5">
+            <div class="input-group">
+                <select class="form-control"
+                        ng-model="seasonSearchRequest.type"
+                        ng-options="seasonSearchType.text for seasonSearchType in seasonSearchTypes"/>
+                <span class="input-group-btn">
+                    <button class="btn btn-default" ng-click="searchBySeason()">Search by Season</button>
+                </span>
+            </div>
         </div>
     </div>
 </form>

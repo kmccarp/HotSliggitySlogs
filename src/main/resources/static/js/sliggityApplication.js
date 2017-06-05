@@ -6,6 +6,9 @@ sliggityApplication.config(['$routeProvider',
         when('/', {
             templateUrl: 'partials/home.html',
             controller: 'SliggityHomeController'
+        }).when('/extras', {
+            templateUrl: 'partials/extras.html',
+            controller: 'SliggityExtrasController'
         }).otherwise({
             redirectTo: '/'
         });

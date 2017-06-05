@@ -37,10 +37,12 @@ public class SliggityController {
         return ResponseEntity.ok(sliggityGetService.getMatchById(id));
     }
 
-    @GetMapping("/matches/heroName/{heroName}")
-    public ResponseEntity<MatchesResponse> getMatchByHeroName(@PathVariable String heroName) {
+    @GetMapping("/matches/heroName")
+    public ResponseEntity<MatchesResponse> getMatchByHeroName(@RequestParam(value = "heroName", required = true) String heroName,
+                                                              @RequestParam(value = "beginningDate", required = false) String beginningDate,
+                                                              @RequestParam(value = "endDate", required = false) String endDate) {
 
-        return ResponseEntity.ok(sliggityGetService.getMatchByHeroName(heroName));
+        return ResponseEntity.ok(sliggityGetService.getMatchByHeroName(heroName, beginningDate, endDate));
     }
 
     @GetMapping("/matches/season/{season}")
