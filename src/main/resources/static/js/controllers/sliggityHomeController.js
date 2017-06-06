@@ -12,7 +12,6 @@ sliggityApplication.controller('SliggityHomeController', ['$scope', '$http', 'Sl
     $scope.searchByName = function() {
         SliggitySearchService.searchByName($scope.heroName, $scope.beginningDate, $scope.endDate).then(function(response) {
             $scope.sliggitySearchResponse = response.data;
-            console.log($scope.sliggitySearchResponse);
         });
     };
 }]);
