@@ -1,5 +1,6 @@
 package com.hotsliggityslogs.factories;
 
+import com.hotsliggityslogs.enumerations.Heroes;
 import com.hotsliggityslogs.models.Match;
 import com.hotsliggityslogs.models.responses.MatchesResponse;
 import org.springframework.stereotype.Component;
@@ -11,6 +12,22 @@ public class MatchesResponseFactory {
     public MatchesResponse createMatchesResponse(List<Match> matches) {
         MatchesResponse matchesResponse = new MatchesResponse();
 
+        matchesResponse = getWinLossData(matchesResponse, matches);
+
+        return matchesResponse;
+    }
+
+    public MatchesResponse createMatchesResponse(List<Match> matches, String heroName) {
+        MatchesResponse matchesResponse = new MatchesResponse();
+
+        matchesResponse = getWinLossData(matchesResponse, matches);
+
+        matchesResponse.setHeroIcon(Heroes.getIconByHeroName(heroName));
+
+        return matchesResponse;
+    }
+
+    private MatchesResponse getWinLossData(MatchesResponse matchesResponse, List<Match> matches) {
         double wins = 0;
         double losses = 0;
         double matchesCount = 0;

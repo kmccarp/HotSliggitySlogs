@@ -11,6 +11,7 @@ public class MatchesResponse {
     private double losses;
     private double matchesCount;
     private double winLossRatio;
+    private String heroIcon;
 
     public List<Match> getMatches() {
         return matches;
@@ -50,5 +51,13 @@ public class MatchesResponse {
 
     public void setWinLossRatio(double winLossRatio) {
         this.winLossRatio = winLossRatio;
+    }
+
+    public String getHeroIcon() {
+        return heroIcon;
+    }
+
+    public void setHeroIcon(String heroIcon) {
+        this.heroIcon = heroIcon;
     }
 }

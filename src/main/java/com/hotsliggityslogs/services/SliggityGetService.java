@@ -41,7 +41,7 @@ public class SliggityGetService {
             matches.addAll(sliggityRepo.findByHeroName(heroName));
         }
 
-        return matchesResponseFactory.createMatchesResponse(matches);
+        return matchesResponseFactory.createMatchesResponse(matches, heroName);
     }
 
     public MatchesResponse getMatchBySeason(String season) {
