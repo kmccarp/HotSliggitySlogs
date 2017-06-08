@@ -2,20 +2,14 @@
     <div class="row bottom-buffer form-group">
         <div class="col-sm-12 col-md-4">
             <div class="input-group">
-                <input placeholder="Hero's Name" type="text" class="form-control" ng-model="heroName"/>
+                <select class="form-control"
+                        ng-model="heroSearchRequest.type"
+                        ng-options="heroSearchType.text for heroSearchType in heroSearchTypes"/>
                 <span class="input-group-btn">
                     <button class="btn btn-default" ng-click="searchByName()">Search by Name</button>
                 </span>
             </div>
         </div>
-        <!--<div class="col-sm-12 col-md-4">-->
-            <!--<div class="radio-inline">-->
-                <!--<label><input type="radio" ng-model="isByDate" value="false" ng-checked="isByDateChecked == 'true'">No Date</label>-->
-            <!--</div>-->
-            <!--<div class="radio-inline">-->
-                <!--<label><input type="radio" ng-model="isByDate" value="true">Date</label>-->
-            <!--</div>-->
-        <!--</div>-->
     </div>
 
     <div class="row bottom-buffer">
@@ -31,8 +25,6 @@
 
     <div class="row bottom-buffer">
         <div class="col-sm-12">
-            <button class="btn btn-default" ng-click="testGenji()">Test Genji</button>
-            <button class="btn btn-default" ng-click="testValla()">Test Valla</button>
             <button class="btn btn-default" ng-click="preseasonTest()">Preseason Dates</button>
             <button class="btn btn-default" ng-click="season12016Test()">Season 1 2016 Dates</button>
             <button class="btn btn-default" ng-click="season22016Test()">Season 2 2016 Dates</button>

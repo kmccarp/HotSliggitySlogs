@@ -5,11 +5,12 @@ sliggityApplication.controller('SliggityHomeController', ['$scope', '$http', 'Sl
     $scope.beginningDate = '';
     $scope.endDate = '';
 
-    $scope.seasonSearchTypes = SliggitySearchService.getSeasonSearchTypes();
-    $scope.seasonSearchRequest = {};
-    $scope.seasonSearchRequest.type = $scope.seasonSearchTypes[0];
+    $scope.heroSearchTypes = SliggitySearchService.getHeroSearchTypes();
+    $scope.heroSearchRequest = {};
+    $scope.heroSearchRequest.type = $scope.heroSearchTypes[0];
 
     $scope.searchByName = function() {
+        $scope.heroName = $scope.heroSearchRequest.type.text;
         if ($scope.datesAreBlank()) {
             SliggitySearchService.searchByName($scope.heroName).then(function(response) {
                 $scope.sliggitySearchResponse = response.data;
@@ -43,20 +44,6 @@ sliggityApplication.controller('SliggityHomeController', ['$scope', '$http', 'Sl
         } else {
             return false;
         }
-    }
-
-    $scope.testGenji = function() {
-        $scope.heroName = "Genji";
-        $scope.beginningDate = "2017-01-01";
-        $scope.endDate = "2017-07-01";
-        $scope.searchByName();
-    }
-
-    $scope.testValla = function() {
-        $scope.heroName = "Valla";
-        $scope.beginningDate = null;
-        $scope.endDate = null;
-        $scope.searchByName();
     }
 
     $scope.preseasonTest = function() {
