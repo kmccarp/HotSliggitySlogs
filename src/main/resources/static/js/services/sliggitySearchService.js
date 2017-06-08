@@ -31,7 +31,15 @@ sliggityApplication.service('SliggitySearchService', ['$http', function ($http) 
     	return $http.get("/matches/" + id);
     };
 
-    this.searchByName = function (heroName, beginningDate, endDate) {
+    this.searchByName = function (heroName) {
+        return $http.get("/matches/heroName", {
+            params: {
+                heroName: heroName
+            }
+        });
+    };
+
+    this.searchByNameAndDateRange = function (heroName, beginningDate, endDate) {
         return $http.get("/matches/heroName", {
             params: {
                 heroName: heroName,

@@ -1,6 +1,6 @@
 <form name="form1">
     <div class="row bottom-buffer form-group">
-        <div class="col-sm-12 col-md-5">
+        <div class="col-sm-12 col-md-4">
             <div class="input-group">
                 <input placeholder="Hero's Name" type="text" class="form-control" ng-model="heroName"/>
                 <span class="input-group-btn">
@@ -8,14 +8,14 @@
                 </span>
             </div>
         </div>
-        <div class="col-sm-12 col-md-5">
-            <div class="radio-inline">
-                <label><input type="radio" ng-model="isByDate" value="false" ng-checked="isByDateChecked == 'true'">No Date</label>
-            </div>
-            <div class="radio-inline">
-                <label><input type="radio" ng-model="isByDate" value="true">Date</label>
-            </div>
-        </div>
+        <!--<div class="col-sm-12 col-md-4">-->
+            <!--<div class="radio-inline">-->
+                <!--<label><input type="radio" ng-model="isByDate" value="false" ng-checked="isByDateChecked == 'true'">No Date</label>-->
+            <!--</div>-->
+            <!--<div class="radio-inline">-->
+                <!--<label><input type="radio" ng-model="isByDate" value="true">Date</label>-->
+            <!--</div>-->
+        <!--</div>-->
     </div>
 
     <div class="row bottom-buffer">
@@ -28,39 +28,70 @@
             <input type="text" class="form-control" ng-model="endDate"/>
         </div>
     </div>
-</form>
 
-<div class="col-sm-12 columns" ng-show="sliggitySearchResponse.matches.length > 0">
-    <table class="table">
-        <thead>
-        <tr>
-            <th>Match Type</th>
-            <th>Map</th>
-            <th>Length</th>
-            <th>Hero</th>
-            <th>Level</th>
-            <th>MMR</th>
-            <th>+/-</th>
-            <th>Date</th>
-            <th>Time</th>
-            <th>Win/Loss</th>
-            <th>Season</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr ng-repeat="match in sliggitySearchResponse.matches">
-            <td>{{match.matchType}}</td>
-            <td>{{match.mapName}}</td>
-            <td>{{match.matchLength}}</td>
-            <td>{{match.heroName}}</td>
-            <td>{{match.heroLevel}}</td>
-            <td>{{match.matchMakingRating}}</td>
-            <td>{{match.ratingAdjustmentPoints}}</td>
-            <td>{{match.matchDate}}</td>
-            <td>{{match.matchTime}}</td>
-            <td>{{match.matchOutcome}}</td>
-            <td>{{match.season}}</td>
-        </tr>
-        </tbody>
-    </table>
+    <div class="row bottom-buffer">
+        <div class="col-sm-12">
+            <button class="btn btn-default" ng-click="testGenji()">Test Genji</button>
+            <button class="btn btn-default" ng-click="testValla()">Test Valla</button>
+            <button class="btn btn-default" ng-click="preseasonTest()">Preseason Dates</button>
+            <button class="btn btn-default" ng-click="season12016Test()">Season 1 2016 Dates</button>
+            <button class="btn btn-default" ng-click="season22016Test()">Season 2 2016 Dates</button>
+            <button class="btn btn-default" ng-click="season32016Test()">Season 3 2016 Dates</button>
+            <button class="btn btn-default" ng-click="season12017Test()">Season 1 2017 Dates</button>
+        </div>
+    </div>
+</form>
+<hr/>
+<div class="row bottom-buffer" ng-show="sliggitySearchResponse.matches.length > 0">
+    <div class="col-sm-1 columns">
+        <img ng-src="{{heroIcon}}" class="heroIcon">
+    </div>
+    <div class="col-sm-2 columns">
+        <div class="chartContainer">
+            <div class="redChart">{{(sliggitySearchResponse.matchesCount)}}</div>
+            <div class="chart"></div>
+        </div>
+    </div>
+    <div class="col-sm-2 columns">
+        <strong>Hero win rate: {{sliggitySearchResponse.winLossRatio}}%</strong>
+    </div>
+</div>
+
+
+<div class="row bottom-buffer" ng-show="sliggitySearchResponse.matches.length > 0">
+    <hr/>
+    <div class="col-sm-12 columns">
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Match Type</th>
+                <th>Map</th>
+                <th>Length</th>
+                <th>Hero</th>
+                <th>Level</th>
+                <th>MMR</th>
+                <th>+/-</th>
+                <th>Date</th>
+                <th>Time</th>
+                <th>Win/Loss</th>
+                <th>Season</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="match in sliggitySearchResponse.matches">
+                <td>{{match.matchType}}</td>
+                <td>{{match.mapName}}</td>
+                <td>{{match.matchLength}}</td>
+                <td>{{match.heroName}}</td>
+                <td>{{match.heroLevel}}</td>
+                <td>{{match.matchMakingRating}}</td>
+                <td>{{match.ratingAdjustmentPoints}}</td>
+                <td>{{match.matchDate}}</td>
+                <td>{{match.matchTime}}</td>
+                <td>{{match.matchOutcome}}</td>
+                <td>{{match.season}}</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
 </div>
