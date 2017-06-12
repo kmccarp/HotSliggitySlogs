@@ -1,13 +1,22 @@
-sliggityApplication.controller('SliggityHomeController', ['$scope', '$http', 'SliggitySearchService', function($scope, $http, SliggitySearchService) {
+sliggityApplication.controller('SliggityHomeController', ['$scope', '$http', 'SliggitySearchService', 'SliggityDateService', function($scope, $http, SliggitySearchService, SliggityDateService) {
     $scope.sliggitySearchResponse = '';
-    $scope.isByDate = 'false';
-    $scope.isByDateChecked = 'true';
-    $scope.beginningDate = '';
-    $scope.endDate = '';
 
     $scope.heroSearchTypes = SliggitySearchService.getHeroSearchTypes();
     $scope.heroSearchRequest = {};
     $scope.heroSearchRequest.type = $scope.heroSearchTypes[0];
+
+    $scope.dateSearchTypes = SliggityDateService.getDateSearchTypes();
+    $scope.dateSearchRequest = {};
+    $scope.dateSearchRequest.type = $scope.dateSearchTypes[0];
+
+    $scope.beginningDate = $scope.dateSearchRequest.type.from;
+    $scope.endDate = $scope.dateSearchRequest.type.to;
+
+    $scope.updateDates = function() {
+        $scope.beginningDate = $scope.dateSearchRequest.type.from;
+        $scope.endDate = $scope.dateSearchRequest.type.to;
+        $scope.searchByName();
+    }
 
     $scope.searchByName = function() {
         $scope.heroName = $scope.heroSearchRequest.type.text;
@@ -45,35 +54,4 @@ sliggityApplication.controller('SliggityHomeController', ['$scope', '$http', 'Sl
             return false;
         }
     }
-
-    $scope.preseasonTest = function() {
-        $scope.beginningDate = "2014-03-10";
-        $scope.endDate = "2016-06-15";
-        $scope.searchByName();
-    }
-
-    $scope.season12016Test = function() {
-        $scope.beginningDate = "2016-06-15";
-        $scope.endDate = "2016-09-14";
-        $scope.searchByName();
-    }
-
-    $scope.season22016Test = function() {
-        $scope.beginningDate = "2016-09-14";
-        $scope.endDate = "2016-12-15";
-        $scope.searchByName();
-    }
-
-    $scope.season32016Test = function() {
-        $scope.beginningDate = "2016-12-15";
-        $scope.endDate = "2017-03-15";
-        $scope.searchByName();
-    }
-
-    $scope.season12017Test = function() {
-        $scope.beginningDate = "2017-03-15";
-        $scope.endDate = "2017-06-13";
-        $scope.searchByName();
-    }
-
 }]);

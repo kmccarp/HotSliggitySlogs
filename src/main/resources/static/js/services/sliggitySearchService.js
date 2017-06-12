@@ -75,33 +75,6 @@ sliggityApplication.service('SliggitySearchService', ['$http', function ($http) 
         return heroSearchTypes;
     };
 
-    var seasonSearchTypes = [
-        {
-            value: '2017season1',
-            text: '2017 Season 1'
-        },
-        {
-            value: '2016season3',
-            text: '2016 Season 3'
-        },
-        {
-            value: '2016season2',
-            text: '2016 Season 2'
-        },
-        {
-            value: '2016season1',
-            text: '2016 Season 1'
-        },
-        {
-            value: 'Preseason',
-            text: 'Preseason'
-        }
-    ];
-
-    this.getSeasonSearchTypes = function () {
-        return seasonSearchTypes;
-    };
-
     this.searchById = function (id) {
     	return $http.get("/matches/" + id);
     };
@@ -127,4 +100,35 @@ sliggityApplication.service('SliggitySearchService', ['$http', function ($http) 
     this.searchBySeason = function (seasonSearchRequestType) {
         return $http.get("/matches/season/" + seasonSearchRequestType);
     };
+
+        function today() {
+            var today = new Date();
+
+            today = formatDate(today);
+
+            return today;
+        }
+
+        function formatDate(date) {
+            var yyyy = date.getFullYear();
+            var mm = date.getMonth() + 1;
+            var dd = date.getDate();
+
+            if(dd < 10) {
+                dd = '0' + dd;
+            }
+
+            if(mm < 10) {
+                mm = '0' + mm;
+            }
+
+            return yyyy + '-' + mm + '-' + dd;
+        }
+
+        function subtractDays(dateToSubtractFrom, numberOfDaysToSubtract) {
+            var newDate = new Date(dateToSubtractFrom);
+            var dd = newDate.getDate();
+            newDate.setDate(dd - numberOfDaysToSubtract);
+            return formatDate(newDate);
+        }
 }]);

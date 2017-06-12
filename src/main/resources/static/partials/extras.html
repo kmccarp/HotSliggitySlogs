@@ -9,19 +9,6 @@
             </div>
         </div>
     </div>
-
-    <div class="row bottom-buffer form-group">
-        <div class="col-sm-12 col-md-5">
-            <div class="input-group">
-                <select class="form-control"
-                        ng-model="seasonSearchRequest.type"
-                        ng-options="seasonSearchType.text for seasonSearchType in seasonSearchTypes"/>
-                <span class="input-group-btn">
-                    <button class="btn btn-default" ng-click="searchBySeason()">Search by Season</button>
-                </span>
-            </div>
-        </div>
-    </div>
 </form>
 
 <div class="col-sm-12 columns" ng-show="sliggitySearchResponse.matches.length > 0">
