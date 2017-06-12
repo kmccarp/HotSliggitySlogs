@@ -26,19 +26,35 @@ public class SliggityGetService {
         return matchesResponseFactory.createMatchesResponse(matches);
     }
 
-    public MatchesResponse getMatch(String heroName, String beginningDate, String endDate, String matchType) {
+    public MatchesResponse getMatch(String heroName, String beginningDate, String endDate, String matchType, String mapName) {
         List<Match> matches = new ArrayList<>();
         if (heroName.equals("All Heroes")) {
             if (matchType.equals("All Modes")) {
-                matches.addAll(sliggityRepo.findAll());
+                if (mapName.equals("All Maps")) {
+                    matches.addAll(sliggityRepo.findAll());
+                } else {
+                    matches.addAll(sliggityRepo.findByMap(mapName, beginningDate, endDate));
+                }
             } else {
-                matches.addAll(sliggityRepo.findByGameType(beginningDate, endDate, matchType));
+                if (mapName.equals("All Maps")) {
+                    matches.addAll(sliggityRepo.findByMatchType(matchType, beginningDate, endDate));
+                } else {
+                    matches.addAll(sliggityRepo.findByMatchTypeAndMap(matchType, mapName, beginningDate, endDate));
+                }
             }
         } else {
             if (matchType.equals("All Modes")) {
-                matches.addAll(sliggityRepo.findByHero(heroName, beginningDate, endDate));
+                if (mapName.equals("All Maps")) {
+                    matches.addAll(sliggityRepo.findByHero(heroName, beginningDate, endDate));
+                } else {
+                    matches.addAll(sliggityRepo.findByHeroAndMap(heroName, mapName, beginningDate, endDate));
+                }
             } else {
-                matches.addAll(sliggityRepo.findByHeroAndGameType(heroName, beginningDate, endDate, matchType));
+                if (mapName.equals("All Maps")) {
+                    matches.addAll(sliggityRepo.findByHeroAndMatchType(heroName, matchType, beginningDate, endDate));
+                } else {
+                    matches.addAll(sliggityRepo.findByHeroAndMatchTypeAndMap(heroName, matchType, mapName, beginningDate, endDate));
+                }
             }
         }
 

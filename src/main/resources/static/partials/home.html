@@ -20,6 +20,15 @@
     <div class="row bottom-buffer form-group">
         <div class="col-sm-12 col-md-4">
             <select class="form-control"
+                    ng-model="mapSearchRequest.type"
+                    ng-change="updateMap(mapSearchType)"
+                    ng-options="mapSearchType.text for mapSearchType in mapSearchTypes"/>
+        </div>
+    </div>
+
+    <div class="row bottom-buffer form-group">
+        <div class="col-sm-12 col-md-4">
+            <select class="form-control"
                     ng-model="dateSearchRequest.type"
                     ng-change="updateDates(dateSearchType)"
                     ng-options="dateSearchType.text for dateSearchType in dateSearchTypes"/>

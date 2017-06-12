@@ -87,17 +87,38 @@ sliggityApplication.service('SliggitySearchService', ['$http', function ($http) 
         return modeSearchTypes;
     };
 
+    var mapSearchTypes = [
+        { text: 'All Maps'},
+        { text: 'Battlefield of Eternity'},
+        { text: "Blackheart's Bay"},
+        { text: 'Braxis Holdout'},
+        { text: 'Cursed Hollow'},
+        { text: 'Dragon Shire'},
+        { text: 'Garden of Terror'},
+        { text: 'Hanamura'},
+        { text: 'Haunted Mines'},
+        { text: 'Infernal Shrines'},
+        { text: 'Sky Temple'},
+        { text: 'Tomb of the Spider Queen'},
+        { text: 'Towers of Doom'}
+    ];
+
+    this.getMapSearchTypes = function () {
+        return mapSearchTypes;
+    };
+
     this.searchById = function (id) {
     	return $http.get("/matches/" + id);
     };
 
-    this.search = function (heroName, beginningDate, endDate, matchType) {
+    this.search = function (heroName, beginningDate, endDate, matchType, mapName) {
         return $http.get("/matches", {
             params: {
                 heroName: heroName,
                 beginningDate: beginningDate,
                 endDate: endDate,
-                matchType: matchType
+                matchType: matchType,
+                mapName: mapName
             }
         });
     };

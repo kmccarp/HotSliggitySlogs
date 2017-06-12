@@ -35,8 +35,9 @@ public class SliggityController {
     public ResponseEntity<MatchesResponse> getMatch(@RequestParam(value = "heroName", required = true) String heroName,
                                                     @RequestParam(value = "beginningDate", required = true) String beginningDate,
                                                     @RequestParam(value = "endDate", required = true) String endDate,
-                                                    @RequestParam(value = "matchType", required = true) String matchType) {
+                                                    @RequestParam(value = "matchType", required = true) String matchType,
+                                                    @RequestParam(value = "mapName", required = true) String mapName) {
 
-        return ResponseEntity.ok(sliggityGetService.getMatch(heroName, beginningDate, endDate, matchType));
+        return ResponseEntity.ok(sliggityGetService.getMatch(heroName, beginningDate, endDate, matchType, mapName));
     }
 }

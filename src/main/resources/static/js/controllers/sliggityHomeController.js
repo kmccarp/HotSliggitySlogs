@@ -13,6 +13,12 @@ sliggityApplication.controller('SliggityHomeController', ['$scope', '$http', 'Sl
 
     $scope.matchType = $scope.modeSearchRequest.type.text;
 
+    $scope.mapSearchTypes = SliggitySearchService.getMapSearchTypes();
+    $scope.mapSearchRequest = {};
+    $scope.mapSearchRequest.type = $scope.mapSearchTypes[0];
+
+    $scope.mapName = $scope.mapSearchRequest.type.text;
+
     $scope.dateSearchTypes = SliggityDateService.getDateSearchTypes();
     $scope.dateSearchRequest = {};
     $scope.dateSearchRequest.type = $scope.dateSearchTypes[0];
@@ -30,6 +36,11 @@ sliggityApplication.controller('SliggityHomeController', ['$scope', '$http', 'Sl
         $scope.search();
     }
 
+    $scope.updateMap = function() {
+        $scope.mapName = $scope.mapSearchRequest.type.text;
+        $scope.search();
+    }
+
     $scope.updateDates = function() {
         $scope.beginningDate = $scope.dateSearchRequest.type.from;
         $scope.endDate = $scope.dateSearchRequest.type.to;
@@ -39,7 +50,7 @@ sliggityApplication.controller('SliggityHomeController', ['$scope', '$http', 'Sl
     $scope.search = function() {
         $scope.heroName = $scope.heroSearchRequest.type.text;
         $scope.matchType = $scope.modeSearchRequest.type.text;
-        SliggitySearchService.search($scope.heroName, $scope.beginningDate, $scope.endDate, $scope.matchType).then(function(response) {
+        SliggitySearchService.search($scope.heroName, $scope.beginningDate, $scope.endDate, $scope.matchType, $scope.mapName).then(function(response) {
             $scope.sliggitySearchResponse = response.data;
             chartResults($scope.sliggitySearchResponse);
         });
