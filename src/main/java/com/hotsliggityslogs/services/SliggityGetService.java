@@ -19,13 +19,6 @@ public class SliggityGetService {
     @Autowired
     private MatchesResponseFactory matchesResponseFactory;
 
-    public MatchesResponse getAllMatches() {
-        List<Match> matches = new ArrayList<>();
-        matches.addAll(sliggityRepo.findAll());
-
-        return matchesResponseFactory.createMatchesResponse(matches);
-    }
-
     public MatchesResponse getMatchById(String id) {
         List<Match> matches = new ArrayList<>();
         matches.add(sliggityRepo.findOne(id));
@@ -33,12 +26,20 @@ public class SliggityGetService {
         return matchesResponseFactory.createMatchesResponse(matches);
     }
 
-    public MatchesResponse getMatchByHeroName(String heroName, String beginningDate, String endDate) {
+    public MatchesResponse getMatch(String heroName, String beginningDate, String endDate, String matchType) {
         List<Match> matches = new ArrayList<>();
-        if (beginningDate != null && endDate != null) {
-            matches.addAll(sliggityRepo.findByHeroAndDate(heroName, beginningDate, endDate));
+        if (heroName.equals("All Heroes")) {
+            if (matchType.equals("All Modes")) {
+                matches.addAll(sliggityRepo.findAll());
+            } else {
+                matches.addAll(sliggityRepo.findByGameType(beginningDate, endDate, matchType));
+            }
         } else {
-            matches.addAll(sliggityRepo.findByHeroName(heroName));
+            if (matchType.equals("All Modes")) {
+                matches.addAll(sliggityRepo.findByHero(heroName, beginningDate, endDate));
+            } else {
+                matches.addAll(sliggityRepo.findByHeroAndGameType(heroName, beginningDate, endDate, matchType));
+            }
         }
 
         return matchesResponseFactory.createMatchesResponse(matches, heroName);

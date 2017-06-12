@@ -3,7 +3,17 @@
         <div class="col-sm-12 col-md-4">
             <select class="form-control"
                     ng-model="heroSearchRequest.type"
+                    ng-change="updateHero(heroSearchType)"
                     ng-options="heroSearchType.text for heroSearchType in heroSearchTypes"/>
+        </div>
+    </div>
+
+    <div class="row bottom-buffer form-group">
+        <div class="col-sm-12 col-md-4">
+            <select class="form-control"
+                    ng-model="modeSearchRequest.type"
+                    ng-change="updateMode(modeSearchType)"
+                    ng-options="modeSearchType.text for modeSearchType in modeSearchTypes"/>
         </div>
     </div>
 
@@ -29,7 +39,7 @@
 
     <div class="row bottom-buffer">
         <div class="col-sm-12">
-            <button class="btn btn-default" ng-click="searchByName()">Search</button>
+            <button class="btn btn-default" ng-click="search()">Search</button>
         </div>
     </div>
 </form>

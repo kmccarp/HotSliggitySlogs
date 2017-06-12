@@ -75,60 +75,30 @@ sliggityApplication.service('SliggitySearchService', ['$http', function ($http) 
         return heroSearchTypes;
     };
 
+    var modeSearchTypes = [
+        { text: 'All Modes'},
+        { text: 'Quickmatch'},
+        { text: 'Unranked Draft'},
+        { text: 'Hero League'},
+        { text: 'Team League'}
+    ];
+
+    this.getModeSearchTypes = function () {
+        return modeSearchTypes;
+    };
+
     this.searchById = function (id) {
     	return $http.get("/matches/" + id);
     };
 
-    this.searchByName = function (heroName) {
-        return $http.get("/matches/heroName", {
-            params: {
-                heroName: heroName
-            }
-        });
-    };
-
-    this.searchByNameAndDateRange = function (heroName, beginningDate, endDate) {
-        return $http.get("/matches/heroName", {
+    this.search = function (heroName, beginningDate, endDate, matchType) {
+        return $http.get("/matches", {
             params: {
                 heroName: heroName,
                 beginningDate: beginningDate,
-                endDate: endDate
+                endDate: endDate,
+                matchType: matchType
             }
         });
     };
-
-    this.searchBySeason = function (seasonSearchRequestType) {
-        return $http.get("/matches/season/" + seasonSearchRequestType);
-    };
-
-        function today() {
-            var today = new Date();
-
-            today = formatDate(today);
-
-            return today;
-        }
-
-        function formatDate(date) {
-            var yyyy = date.getFullYear();
-            var mm = date.getMonth() + 1;
-            var dd = date.getDate();
-
-            if(dd < 10) {
-                dd = '0' + dd;
-            }
-
-            if(mm < 10) {
-                mm = '0' + mm;
-            }
-
-            return yyyy + '-' + mm + '-' + dd;
-        }
-
-        function subtractDays(dateToSubtractFrom, numberOfDaysToSubtract) {
-            var newDate = new Date(dateToSubtractFrom);
-            var dd = newDate.getDate();
-            newDate.setDate(dd - numberOfDaysToSubtract);
-            return formatDate(newDate);
-        }
 }]);

@@ -17,12 +17,6 @@ public class SliggityController {
     @Autowired
     private SliggitySaveService sliggitySaveService;
 
-    @GetMapping("/matches")
-    public ResponseEntity<MatchesResponse> getMatches() {
-
-        return ResponseEntity.ok(sliggityGetService.getAllMatches());
-    }
-
     @PostMapping("/matches")
     public ResponseEntity<Void> postMatches(@RequestBody MatchesRequest matchesRequest) {
 
@@ -37,11 +31,12 @@ public class SliggityController {
         return ResponseEntity.ok(sliggityGetService.getMatchById(id));
     }
 
-    @GetMapping("/matches/heroName")
-    public ResponseEntity<MatchesResponse> getMatchByHeroName(@RequestParam(value = "heroName", required = true) String heroName,
-                                                              @RequestParam(value = "beginningDate", required = false) String beginningDate,
-                                                              @RequestParam(value = "endDate", required = false) String endDate) {
+    @GetMapping("/matches")
+    public ResponseEntity<MatchesResponse> getMatch(@RequestParam(value = "heroName", required = true) String heroName,
+                                                    @RequestParam(value = "beginningDate", required = true) String beginningDate,
+                                                    @RequestParam(value = "endDate", required = true) String endDate,
+                                                    @RequestParam(value = "matchType", required = true) String matchType) {
 
-        return ResponseEntity.ok(sliggityGetService.getMatchByHeroName(heroName, beginningDate, endDate));
+        return ResponseEntity.ok(sliggityGetService.getMatch(heroName, beginningDate, endDate, matchType));
     }
 }

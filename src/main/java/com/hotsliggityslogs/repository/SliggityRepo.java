@@ -9,7 +9,10 @@ import java.util.List;
 
 @Repository
 public interface SliggityRepo extends MongoRepository<Match, String> {
-    List<Match> findByHeroName(String heroName);
     @Query("{ 'heroName' : ?0, 'matchDate' : { $gte : ?1, $lte : ?2 }}")
-    List<Match> findByHeroAndDate(String heroName, String from, String to);
+    List<Match> findByHero(String heroName, String from, String to);
+    @Query("{ 'matchDate' : { $gte : ?0, $lte : ?1 }, 'matchType' : ?2 }")
+    List<Match> findByGameType(String from, String to, String matchType);
+    @Query("{ 'heroName' : ?0, 'matchDate' : { $gte : ?1, $lte : ?2 }, 'matchType' : ?3 }")
+    List<Match> findByHeroAndGameType(String heroName, String from, String to, String matchType);
 }

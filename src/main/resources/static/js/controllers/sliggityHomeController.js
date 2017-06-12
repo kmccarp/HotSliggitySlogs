@@ -5,6 +5,14 @@ sliggityApplication.controller('SliggityHomeController', ['$scope', '$http', 'Sl
     $scope.heroSearchRequest = {};
     $scope.heroSearchRequest.type = $scope.heroSearchTypes[0];
 
+    $scope.heroName = $scope.heroSearchRequest.type.text;
+
+    $scope.modeSearchTypes = SliggitySearchService.getModeSearchTypes();
+    $scope.modeSearchRequest = {};
+    $scope.modeSearchRequest.type = $scope.modeSearchTypes[0];
+
+    $scope.matchType = $scope.modeSearchRequest.type.text;
+
     $scope.dateSearchTypes = SliggityDateService.getDateSearchTypes();
     $scope.dateSearchRequest = {};
     $scope.dateSearchRequest.type = $scope.dateSearchTypes[0];
@@ -12,25 +20,29 @@ sliggityApplication.controller('SliggityHomeController', ['$scope', '$http', 'Sl
     $scope.beginningDate = $scope.dateSearchRequest.type.from;
     $scope.endDate = $scope.dateSearchRequest.type.to;
 
+    $scope.updateHero = function() {
+        $scope.heroName = $scope.heroSearchRequest.type.text;
+        $scope.search();
+    }
+
+    $scope.updateMode = function() {
+        $scope.matchType = $scope.modeSearchRequest.type.text;
+        $scope.search();
+    }
+
     $scope.updateDates = function() {
         $scope.beginningDate = $scope.dateSearchRequest.type.from;
         $scope.endDate = $scope.dateSearchRequest.type.to;
-        $scope.searchByName();
+        $scope.search();
     }
 
-    $scope.searchByName = function() {
+    $scope.search = function() {
         $scope.heroName = $scope.heroSearchRequest.type.text;
-        if ($scope.datesAreBlank()) {
-            SliggitySearchService.searchByName($scope.heroName).then(function(response) {
-                $scope.sliggitySearchResponse = response.data;
-                chartResults($scope.sliggitySearchResponse);
-            });
-        } else {
-            SliggitySearchService.searchByNameAndDateRange($scope.heroName, $scope.beginningDate, $scope.endDate).then(function(response) {
-                $scope.sliggitySearchResponse = response.data;
-                chartResults($scope.sliggitySearchResponse);
-            });
-        }
+        $scope.matchType = $scope.modeSearchRequest.type.text;
+        SliggitySearchService.search($scope.heroName, $scope.beginningDate, $scope.endDate, $scope.matchType).then(function(response) {
+            $scope.sliggitySearchResponse = response.data;
+            chartResults($scope.sliggitySearchResponse);
+        });
     }
 
     function chartResults(response) {
