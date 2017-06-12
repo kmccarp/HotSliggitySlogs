@@ -44,10 +44,4 @@ public class SliggityController {
 
         return ResponseEntity.ok(sliggityGetService.getMatchByHeroName(heroName, beginningDate, endDate));
     }
-
-    @GetMapping("/matches/season/{season}")
-    public ResponseEntity<MatchesResponse> getMatchBySeason(@PathVariable String season) {
-
-        return ResponseEntity.ok(sliggityGetService.getMatchBySeason(season));
-    }
 }
