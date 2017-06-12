@@ -54,9 +54,10 @@
 </form>
 <hr/>
 <div class="row bottom-buffer" ng-show="sliggitySearchResponse.matches.length > 0">
-    <div class="col-sm-1 columns">
+    <div class="col-sm-1 columns" ng-hide="sliggitySearchResponse.heroIcon == 'All Heroes'">
         <img ng-src="{{heroIcon}}" class="heroIcon">
     </div>
+    <div class="col-sm-1 columns" ng-show="sliggitySearchResponse.heroIcon == 'All Heroes'"></div>
     <div class="col-sm-2 columns">
         <div class="chartContainer">
             <div class="redChart">{{(sliggitySearchResponse.matchesCount)}}</div>

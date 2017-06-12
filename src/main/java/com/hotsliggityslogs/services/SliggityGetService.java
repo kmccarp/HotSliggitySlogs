@@ -5,6 +5,7 @@ import com.hotsliggityslogs.models.Match;
 import com.hotsliggityslogs.models.responses.MatchesResponse;
 import com.hotsliggityslogs.repository.SliggityRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -27,33 +28,35 @@ public class SliggityGetService {
     }
 
     public MatchesResponse getMatch(String heroName, String beginningDate, String endDate, String matchType, String mapName) {
+        Sort matchDateDescending = new Sort(Sort.Direction.DESC, "matchDate");
+
         List<Match> matches = new ArrayList<>();
         if (heroName.equals("All Heroes")) {
             if (matchType.equals("All Modes")) {
                 if (mapName.equals("All Maps")) {
-                    matches.addAll(sliggityRepo.findAll());
+                    matches.addAll(sliggityRepo.findByDates(beginningDate, endDate, matchDateDescending));
                 } else {
-                    matches.addAll(sliggityRepo.findByMap(mapName, beginningDate, endDate));
+                    matches.addAll(sliggityRepo.findByMap(mapName, beginningDate, endDate, matchDateDescending));
                 }
             } else {
                 if (mapName.equals("All Maps")) {
-                    matches.addAll(sliggityRepo.findByMatchType(matchType, beginningDate, endDate));
+                    matches.addAll(sliggityRepo.findByMatchType(matchType, beginningDate, endDate, matchDateDescending));
                 } else {
-                    matches.addAll(sliggityRepo.findByMatchTypeAndMap(matchType, mapName, beginningDate, endDate));
+                    matches.addAll(sliggityRepo.findByMatchTypeAndMap(matchType, mapName, beginningDate, endDate, matchDateDescending));
                 }
             }
         } else {
             if (matchType.equals("All Modes")) {
                 if (mapName.equals("All Maps")) {
-                    matches.addAll(sliggityRepo.findByHero(heroName, beginningDate, endDate));
+                    matches.addAll(sliggityRepo.findByHero(heroName, beginningDate, endDate, matchDateDescending));
                 } else {
-                    matches.addAll(sliggityRepo.findByHeroAndMap(heroName, mapName, beginningDate, endDate));
+                    matches.addAll(sliggityRepo.findByHeroAndMap(heroName, mapName, beginningDate, endDate, matchDateDescending));
                 }
             } else {
                 if (mapName.equals("All Maps")) {
-                    matches.addAll(sliggityRepo.findByHeroAndMatchType(heroName, matchType, beginningDate, endDate));
+                    matches.addAll(sliggityRepo.findByHeroAndMatchType(heroName, matchType, beginningDate, endDate, matchDateDescending));
                 } else {
-                    matches.addAll(sliggityRepo.findByHeroAndMatchTypeAndMap(heroName, matchType, mapName, beginningDate, endDate));
+                    matches.addAll(sliggityRepo.findByHeroAndMatchTypeAndMap(heroName, matchType, mapName, beginningDate, endDate, matchDateDescending));
                 }
             }
         }

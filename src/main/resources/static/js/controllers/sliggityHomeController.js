@@ -57,7 +57,9 @@ sliggityApplication.controller('SliggityHomeController', ['$scope', '$http', 'Sl
     }
 
     function chartResults(response) {
-        $scope.heroIcon = "https://d1i1jxrdh2kvwy.cloudfront.net/Images/Heroes/Portraits/" + $scope.sliggitySearchResponse.heroIcon + ".png";
+        if ($scope.sliggitySearchResponse.heroIcon != "All Heroes") {
+            $scope.heroIcon = "https://d1i1jxrdh2kvwy.cloudfront.net/Images/Heroes/Portraits/" + $scope.sliggitySearchResponse.heroIcon + ".png";
+        }
 
         console.log($scope.sliggitySearchResponse);
 

@@ -1,6 +1,7 @@
 sliggityApplication.service('SliggitySearchService', ['$http', function ($http) {
 
     var heroSearchTypes = [
+        { text: 'All Heroes'},
         { text: 'Abathur'},
         { text: 'Alarak'},
         { text: "Anub'arak"},
